@@ -19,7 +19,7 @@
 #include "XyloStoriesFilter_types.h"
 
 /* Function Declarations */
-extern void XyloStoriesFilter(const emxArray_real_T *inputData, double out[8]);
+extern double XyloStoriesFilter(const double inputData[500]);
 
 #endif
 

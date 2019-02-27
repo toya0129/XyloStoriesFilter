@@ -37,34 +37,24 @@
 #include "XyloStoriesFilter.h"
 #include "main.h"
 #include "XyloStoriesFilter_terminate.h"
-#include "XyloStoriesFilter_emxAPI.h"
 #include "XyloStoriesFilter_initialize.h"
 
 /* Function Declarations */
-static emxArray_real_T *argInit_Unboundedx1_real_T(void);
+static void argInit_500x1_real_T(double result[500]);
 static double argInit_real_T(void);
 static void main_XyloStoriesFilter(void);
 
 /* Function Definitions */
-static emxArray_real_T *argInit_Unboundedx1_real_T(void)
+static void argInit_500x1_real_T(double result[500])
 {
-  emxArray_real_T *result;
-  static int iv0[1] = { 2 };
-
   int idx0;
 
-  /* Set the size of the array.
-     Change this size to the value that the application requires. */
-  result = emxCreateND_real_T(1, iv0);
-
   /* Loop over the array to initialize each element. */
-  for (idx0 = 0; idx0 < result->size[0U]; idx0++) {
+  for (idx0 = 0; idx0 < 500; idx0++) {
     /* Set the value of the array element.
        Change this value to the value that the application requires. */
-    result->data[idx0] = argInit_real_T();
+    result[idx0] = argInit_real_T();
   }
-
-  return result;
 }
 
 static double argInit_real_T(void)
@@ -74,16 +64,14 @@ static double argInit_real_T(void)
 
 static void main_XyloStoriesFilter(void)
 {
-  emxArray_real_T *inputData;
-  double out[8];
+  double dv8[500];
+  double out;
 
   /* Initialize function 'XyloStoriesFilter' input arguments. */
   /* Initialize function input argument 'inputData'. */
-  inputData = argInit_Unboundedx1_real_T();
-
   /* Call the entry-point 'XyloStoriesFilter'. */
-  XyloStoriesFilter(inputData, out);
-  emxDestroyArray_real_T(inputData);
+  argInit_500x1_real_T(dv8);
+  out = XyloStoriesFilter(dv8);
 }
 
 int main(int argc, const char * const argv[])

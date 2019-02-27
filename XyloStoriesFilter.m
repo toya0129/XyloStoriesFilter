@@ -1,12 +1,14 @@
 function out = XyloStoriesFilter(inputData)
-    out = zeros(8,1);
+    %out = zeros(8,1);
+    out = 0;
     
     %C1
     bandpass = fir1(48,[0.4 0.42]);
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
-            out(1,1) = 1;
+            %out(1,1) = 1;
+            out = 1;
         end
     end
     
@@ -15,7 +17,8 @@ function out = XyloStoriesFilter(inputData)
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
-            out(2,1) = 2;
+            %out(2,1) = 2;
+            out = 2;
         end
     end
     
@@ -25,7 +28,8 @@ function out = XyloStoriesFilter(inputData)
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
-            out(3,1) = 3;
+            %out(3,1) = 3;
+            out = 3;
         end
     end
     
@@ -34,7 +38,8 @@ function out = XyloStoriesFilter(inputData)
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
-            out(4,1) = 4;
+            %out(4,1) = 4;
+            out = 4;
         end
     end
     
@@ -43,7 +48,8 @@ function out = XyloStoriesFilter(inputData)
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
-            out(5,1) = 5;
+            %out(5,1) = 5;
+            out = 5;
         end
     end
     
@@ -52,7 +58,8 @@ function out = XyloStoriesFilter(inputData)
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
-            out(6,1) = 6;
+            %out(6,1) = 6;
+            out = 6;
         end
     end
     
@@ -61,7 +68,8 @@ function out = XyloStoriesFilter(inputData)
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
-            out(7,1) = 7;
+            %out(7,1) = 7;
+            out = 7;
         end
     end
     
@@ -70,7 +78,8 @@ function out = XyloStoriesFilter(inputData)
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
-            out(8,1) = 8;
+            %out(8,1) = 8;
+            out = 8;
         end
     end
     

@@ -2,7 +2,7 @@
 ## Makefile generated for MATLAB file/project 'XyloStoriesFilter'. 
 ## 
 ## Makefile     : XyloStoriesFilter_rtw.mk
-## Generated on : Wed Feb 27 22:53:08 2019
+## Generated on : Thu Feb 28 01:55:49 2019
 ## MATLAB Coder version: 4.1 (R2018b)
 ## 
 ## Build Info:
@@ -28,7 +28,7 @@ MATLAB_ROOT               = /Applications/MATLAB_R2018b.app
 MATLAB_BIN                = /Applications/MATLAB_R2018b.app/bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)/maci64
 MASTER_ANCHOR_DIR         = 
-START_DIR                 = /Users/toya/Project/XyloStories/MatlabSensor/codegen/lib/XyloStoriesFilter
+START_DIR                 = /Users/toya/Project/XyloStories/XyloStoriesFilter/codegen/lib/XyloStoriesFilter
 ARCH                      = maci64
 RELATIVE_PATH_TO_ANCHOR   = .
 C_STANDARD_OPTS           = -fno-common -fexceptions
@@ -184,7 +184,7 @@ BUILD_TYPE = "Static Library"
 ## INCLUDE PATHS
 ###########################################################################
 
-INCLUDES_BUILDINFO = -I$(START_DIR) -I/Users/toya/Project/XyloStories/MatlabSensor -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert
+INCLUDES_BUILDINFO = -I$(START_DIR) -I/Users/toya/Project/XyloStories/XyloStoriesFilter -I$(MATLAB_ROOT)/extern/include -I$(MATLAB_ROOT)/simulink/include -I$(MATLAB_ROOT)/rtw/c/src -I$(MATLAB_ROOT)/rtw/c/src/ext_mode/common -I$(MATLAB_ROOT)/rtw/c/ert
 
 INCLUDES = $(INCLUDES_BUILDINFO)
 
@@ -200,7 +200,7 @@ DEFINES = $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/XyloStoriesFilter_initialize.c $(START_DIR)/XyloStoriesFilter_terminate.c $(START_DIR)/XyloStoriesFilter.c $(START_DIR)/filter.c $(START_DIR)/XyloStoriesFilter_emxutil.c $(START_DIR)/XyloStoriesFilter_emxAPI.c
+SRCS = $(START_DIR)/XyloStoriesFilter_initialize.c $(START_DIR)/XyloStoriesFilter_terminate.c $(START_DIR)/XyloStoriesFilter.c $(START_DIR)/filter.c
 
 ALL_SRCS = $(SRCS)
 
@@ -208,7 +208,7 @@ ALL_SRCS = $(SRCS)
 ## OBJECTS
 ###########################################################################
 
-OBJS = XyloStoriesFilter_initialize.o XyloStoriesFilter_terminate.o XyloStoriesFilter.o filter.o XyloStoriesFilter_emxutil.o XyloStoriesFilter_emxAPI.o
+OBJS = XyloStoriesFilter_initialize.o XyloStoriesFilter_terminate.o XyloStoriesFilter.o filter.o
 
 ALL_OBJS = $(OBJS)
 
@@ -331,11 +331,11 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS)
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
-%.o : /Users/toya/Project/XyloStories/MatlabSensor/%.c
+%.o : /Users/toya/Project/XyloStories/XyloStoriesFilter/%.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 
-%.o : /Users/toya/Project/XyloStories/MatlabSensor/%.cpp
+%.o : /Users/toya/Project/XyloStories/XyloStoriesFilter/%.cpp
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 

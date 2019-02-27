@@ -10,23 +10,70 @@
  */
 
 /* Include files */
-#include <string.h>
 #include "XyloStoriesFilter.h"
-#include "XyloStoriesFilter_emxutil.h"
 #include "filter.h"
 
 /* Function Definitions */
-void XyloStoriesFilter(const emxArray_real_T *inputData, double out[8])
+double XyloStoriesFilter(const double inputData[500])
 {
-  emxArray_real_T *band;
-  int i0;
-  int nx_m_nb;
-  unsigned int inputData_idx_0;
-  int nx;
-  int k;
-  int j;
-  int naxpy;
-  static const double dv0[49] = { 0.00095699230765583423, -0.0054605766929562809,
+  double out;
+  static const double dv0[49] = { 0.0049679352140034232, -0.0013079855171886177,
+    -0.0068735340613908617, -0.0028250940455763016, 0.0083663135617343832,
+    0.010166648053432096, -0.0058462708174721956, -0.019254534093837747,
+    -0.0043454098597987458, 0.024385657561791271, 0.021773141457284935,
+    -0.018543979327538603, -0.03986409692104359, -0.0014420123028182831,
+    0.048122615821187043, 0.030997037121725621, -0.037907486162757749,
+    -0.058269044785412429, 0.0084145364746303544, 0.069477004244358528,
+    0.03110308022190128, -0.056414455746156611, -0.064826392648530809,
+    0.021686727831943507, 0.078052638758387971, 0.021686727831943507,
+    -0.064826392648530809, -0.056414455746156611, 0.03110308022190128,
+    0.069477004244358528, 0.0084145364746303544, -0.058269044785412429,
+    -0.037907486162757749, 0.030997037121725621, 0.048122615821187043,
+    -0.0014420123028182831, -0.03986409692104359, -0.018543979327538603,
+    0.021773141457284935, 0.024385657561791271, -0.0043454098597987458,
+    -0.019254534093837747, -0.0058462708174721956, 0.010166648053432096,
+    0.0083663135617343832, -0.0028250940455763016, -0.0068735340613908617,
+    -0.0013079855171886177, 0.0049679352140034232 };
+
+  double band[500];
+  int i;
+  static const double dv1[49] = { -0.00152818336754993, -0.0023302418294280595,
+    0.0017137251272618739, 0.0043060407174671921, -0.0019426608660129885,
+    -0.0081910730057441032, 0.00138464468008337, 0.014260455330128497,
+    0.0011333555395626569, -0.02209516099852564, -0.0067604990260463011,
+    0.030508245626736871, 0.016182694559438996, -0.037724477090114845,
+    -0.029254141724035922, 0.041785992872610818, 0.044833343344691072,
+    -0.04107799973851773, -0.060900905040619457, 0.034820318527319927,
+    0.074950832042514223, -0.023370502475087068, -0.084559403085327875,
+    0.0082343953124078256, 0.0879750128802822, 0.0082343953124078256,
+    -0.084559403085327875, -0.023370502475087068, 0.074950832042514223,
+    0.034820318527319927, -0.060900905040619457, -0.04107799973851773,
+    0.044833343344691072, 0.041785992872610818, -0.029254141724035922,
+    -0.037724477090114845, 0.016182694559438996, 0.030508245626736871,
+    -0.0067604990260463011, -0.02209516099852564, 0.0011333555395626569,
+    0.014260455330128497, 0.00138464468008337, -0.0081910730057441032,
+    -0.0019426608660129885, 0.0043060407174671921, 0.0017137251272618739,
+    -0.0023302418294280595, -0.00152818336754993 };
+
+  static const double dv2[49] = { -0.0015778458543382085, 0.0053091335681012888,
+    0.00099132288494504172, -0.0077257381155733046, 3.0053560953886332E-17,
+    0.012135515993688223, -0.0023698338751486983, -0.018077739196814692,
+    0.0069384953423412641, 0.024647152583588235, -0.014163636569087435,
+    -0.030643285258483605, 0.023993494989405915, 0.034792035150562291,
+    -0.035817269410062441, -0.035996366212890693, 0.048527850415965718,
+    0.033565191421366034, -0.060688874560477918, -0.027372458079925222,
+    0.070775899528075115, 0.01791171011199845, -0.077445236804295672,
+    -0.0062323106115006162, 0.079777242134122878, -0.0062323106115006162,
+    -0.077445236804295672, 0.01791171011199845, 0.070775899528075115,
+    -0.027372458079925222, -0.060688874560477918, 0.033565191421366034,
+    0.048527850415965718, -0.035996366212890693, -0.035817269410062441,
+    0.034792035150562291, 0.023993494989405915, -0.030643285258483605,
+    -0.014163636569087435, 0.024647152583588235, 0.0069384953423412641,
+    -0.018077739196814692, -0.0023698338751486983, 0.012135515993688223,
+    3.0053560953886332E-17, -0.0077257381155733046, 0.00099132288494504172,
+    0.0053091335681012888, -0.0015778458543382085 };
+
+  static const double dv3[49] = { 0.00095699230765583423, -0.0054605766929562809,
     0.0013826886861341525, 0.0070646618189667684, -0.00570209257271588,
     -0.0081944950153267967, 0.013042427365788346, 0.0060234714959727991,
     -0.022281518173291517, 0.0020936045941334449, 0.029966225222222878,
@@ -44,7 +91,7 @@ void XyloStoriesFilter(const emxArray_real_T *inputData, double out[8])
     -0.00570209257271588, 0.0070646618189667684, 0.0013826886861341525,
     -0.0054605766929562809, 0.00095699230765583423 };
 
-  static const double dv1[49] = { -0.0040161188705125162, 0.0032180252481842473,
+  static const double dv4[49] = { -0.0040161188705125162, 0.0032180252481842473,
     0.0023615759632994423, -0.0068742120628170382, 0.002702189874761258,
     0.0085702359497867517, -0.012281482152930208, -0.0021807372003338869,
     0.020572963784903558, -0.014981404041996497, -0.016117850391277264,
@@ -62,7 +109,7 @@ void XyloStoriesFilter(const emxArray_real_T *inputData, double out[8])
     0.002702189874761258, -0.0068742120628170382, 0.0023615759632994423,
     0.0032180252481842473, -0.0040161188705125162 };
 
-  static const double dv2[49] = { -0.0034945899440209679, 0.004470982934606329,
+  static const double dv5[49] = { -0.0034945899440209679, 0.004470982934606329,
     -0.0017139980640511192, -0.0040486479714772258, 0.00874468311610693,
     -0.0065379551188504276, -0.0043309941930002663, 0.016548323084334359,
     -0.017184154544029259, -1.1589659228683813E-17, 0.024336096316391716,
@@ -80,7 +127,7 @@ void XyloStoriesFilter(const emxArray_real_T *inputData, double out[8])
     0.00874468311610693, -0.0040486479714772258, -0.0017139980640511192,
     0.004470982934606329, -0.0034945899440209679 };
 
-  static const double dv3[49] = { -0.0027535661429681532, 0.0046181041637266655,
+  static const double dv6[49] = { -0.0027535661429681532, 0.0046181041637266655,
     -0.0048608544353074407, 0.002535797949007408, 0.0027024332206583702,
     -0.0093921048793693309, 0.0139057895641695, -0.011911858751198198,
     0.0013338074293819675, 0.014982753193379592, -0.02913793136450803,
@@ -98,7 +145,7 @@ void XyloStoriesFilter(const emxArray_real_T *inputData, double out[8])
     0.0027024332206583702, 0.002535797949007408, -0.0048608544353074407,
     0.0046181041637266655, -0.0027535661429681532 };
 
-  static const double dv4[49] = { 0.0054707968783348111, -0.0057366601329627009,
+  static const double dv7[49] = { 0.0054707968783348111, -0.0057366601329627009,
     0.004697157578893215, -0.0018126114942041062, -0.0031838509738589022,
     0.0096157893142900276, -0.015542344350975151, 0.018129807163605478,
     -0.014727422393328008, 0.0042655977900568354, 0.011665582097031259,
@@ -116,307 +163,82 @@ void XyloStoriesFilter(const emxArray_real_T *inputData, double out[8])
     -0.0031838509738589022, -0.0018126114942041062, 0.004697157578893215,
     -0.0057366601329627009, 0.0054707968783348111 };
 
-  memset(&out[0], 0, sizeof(double) << 3);
-  emxInit_real_T(&band, 1);
+  /* out = zeros(8,1); */
+  out = 0.0;
 
   /* C1 */
-  filter(inputData, band);
-  i0 = band->size[0];
-  for (nx_m_nb = 0; nx_m_nb < i0; nx_m_nb++) {
-    if (band->data[nx_m_nb] >= 30.0) {
-      out[0] = 1.0;
+  filter(dv0, inputData, band);
+  for (i = 0; i < 500; i++) {
+    if (band[i] >= 30.0) {
+      /* out(1,1) = 1; */
+      out = 1.0;
     }
   }
 
   /* D */
-  b_filter(inputData, band);
-  i0 = band->size[0];
-  for (nx_m_nb = 0; nx_m_nb < i0; nx_m_nb++) {
-    if (band->data[nx_m_nb] >= 30.0) {
-      out[1] = 2.0;
+  filter(dv1, inputData, band);
+  for (i = 0; i < 500; i++) {
+    if (band[i] >= 30.0) {
+      /* out(2,1) = 2; */
+      out = 2.0;
     }
   }
 
   /* E */
-  c_filter(inputData, band);
-  i0 = band->size[0];
-  for (nx_m_nb = 0; nx_m_nb < i0; nx_m_nb++) {
-    if (band->data[nx_m_nb] >= 30.0) {
-      out[2] = 3.0;
+  filter(dv2, inputData, band);
+  for (i = 0; i < 500; i++) {
+    if (band[i] >= 30.0) {
+      /* out(3,1) = 3; */
+      out = 3.0;
     }
   }
 
   /* F */
-  inputData_idx_0 = (unsigned int)inputData->size[0];
-  i0 = band->size[0];
-  band->size[0] = (int)inputData_idx_0;
-  emxEnsureCapacity_real_T(band, i0);
-  nx = inputData->size[0];
-  nx_m_nb = band->size[0];
-  i0 = band->size[0];
-  band->size[0] = nx_m_nb;
-  emxEnsureCapacity_real_T(band, i0);
-  for (i0 = 0; i0 < nx_m_nb; i0++) {
-    band->data[i0] = 0.0;
-  }
-
-  if (inputData->size[0] >= 98) {
-    for (k = 0; k < 49; k++) {
-      nx_m_nb = k + 1;
-      for (j = nx_m_nb; j <= nx; j++) {
-        band->data[j - 1] += dv0[k] * inputData->data[(j - k) - 1];
-      }
-    }
-  } else {
-    if (inputData->size[0] > 49) {
-      nx_m_nb = inputData->size[0] - 50;
-    } else {
-      nx_m_nb = -1;
-    }
-
-    for (k = 0; k <= nx_m_nb; k++) {
-      for (j = 0; j < 49; j++) {
-        i0 = k + j;
-        band->data[i0] += inputData->data[k] * dv0[j];
-      }
-    }
-
-    naxpy = inputData->size[0] - nx_m_nb;
-    i0 = nx_m_nb + 2;
-    for (k = i0; k <= nx; k++) {
-      for (j = 0; j <= naxpy - 2; j++) {
-        nx_m_nb = (k + j) - 1;
-        band->data[nx_m_nb] += inputData->data[k - 1] * dv0[j];
-      }
-
-      naxpy--;
-    }
-  }
-
-  i0 = band->size[0];
-  for (nx_m_nb = 0; nx_m_nb < i0; nx_m_nb++) {
-    if (band->data[nx_m_nb] >= 30.0) {
-      out[3] = 4.0;
+  filter(dv3, inputData, band);
+  for (i = 0; i < 500; i++) {
+    if (band[i] >= 30.0) {
+      /* out(4,1) = 4; */
+      out = 4.0;
     }
   }
 
   /* G */
-  inputData_idx_0 = (unsigned int)inputData->size[0];
-  i0 = band->size[0];
-  band->size[0] = (int)inputData_idx_0;
-  emxEnsureCapacity_real_T(band, i0);
-  nx = inputData->size[0];
-  nx_m_nb = band->size[0];
-  i0 = band->size[0];
-  band->size[0] = nx_m_nb;
-  emxEnsureCapacity_real_T(band, i0);
-  for (i0 = 0; i0 < nx_m_nb; i0++) {
-    band->data[i0] = 0.0;
-  }
-
-  if (inputData->size[0] >= 98) {
-    for (k = 0; k < 49; k++) {
-      nx_m_nb = k + 1;
-      for (j = nx_m_nb; j <= nx; j++) {
-        band->data[j - 1] += dv1[k] * inputData->data[(j - k) - 1];
-      }
-    }
-  } else {
-    if (inputData->size[0] > 49) {
-      nx_m_nb = inputData->size[0] - 50;
-    } else {
-      nx_m_nb = -1;
-    }
-
-    for (k = 0; k <= nx_m_nb; k++) {
-      for (j = 0; j < 49; j++) {
-        i0 = k + j;
-        band->data[i0] += inputData->data[k] * dv1[j];
-      }
-    }
-
-    naxpy = inputData->size[0] - nx_m_nb;
-    i0 = nx_m_nb + 2;
-    for (k = i0; k <= nx; k++) {
-      for (j = 0; j <= naxpy - 2; j++) {
-        nx_m_nb = (k + j) - 1;
-        band->data[nx_m_nb] += inputData->data[k - 1] * dv1[j];
-      }
-
-      naxpy--;
-    }
-  }
-
-  i0 = band->size[0];
-  for (nx_m_nb = 0; nx_m_nb < i0; nx_m_nb++) {
-    if (band->data[nx_m_nb] >= 30.0) {
-      out[4] = 5.0;
+  filter(dv4, inputData, band);
+  for (i = 0; i < 500; i++) {
+    if (band[i] >= 30.0) {
+      /* out(5,1) = 5; */
+      out = 5.0;
     }
   }
 
   /* A */
-  inputData_idx_0 = (unsigned int)inputData->size[0];
-  i0 = band->size[0];
-  band->size[0] = (int)inputData_idx_0;
-  emxEnsureCapacity_real_T(band, i0);
-  nx = inputData->size[0];
-  nx_m_nb = band->size[0];
-  i0 = band->size[0];
-  band->size[0] = nx_m_nb;
-  emxEnsureCapacity_real_T(band, i0);
-  for (i0 = 0; i0 < nx_m_nb; i0++) {
-    band->data[i0] = 0.0;
-  }
-
-  if (inputData->size[0] >= 98) {
-    for (k = 0; k < 49; k++) {
-      nx_m_nb = k + 1;
-      for (j = nx_m_nb; j <= nx; j++) {
-        band->data[j - 1] += dv2[k] * inputData->data[(j - k) - 1];
-      }
-    }
-  } else {
-    if (inputData->size[0] > 49) {
-      nx_m_nb = inputData->size[0] - 50;
-    } else {
-      nx_m_nb = -1;
-    }
-
-    for (k = 0; k <= nx_m_nb; k++) {
-      for (j = 0; j < 49; j++) {
-        i0 = k + j;
-        band->data[i0] += inputData->data[k] * dv2[j];
-      }
-    }
-
-    naxpy = inputData->size[0] - nx_m_nb;
-    i0 = nx_m_nb + 2;
-    for (k = i0; k <= nx; k++) {
-      for (j = 0; j <= naxpy - 2; j++) {
-        nx_m_nb = (k + j) - 1;
-        band->data[nx_m_nb] += inputData->data[k - 1] * dv2[j];
-      }
-
-      naxpy--;
-    }
-  }
-
-  i0 = band->size[0];
-  for (nx_m_nb = 0; nx_m_nb < i0; nx_m_nb++) {
-    if (band->data[nx_m_nb] >= 30.0) {
-      out[5] = 6.0;
+  filter(dv5, inputData, band);
+  for (i = 0; i < 500; i++) {
+    if (band[i] >= 30.0) {
+      /* out(6,1) = 6; */
+      out = 6.0;
     }
   }
 
   /* B */
-  inputData_idx_0 = (unsigned int)inputData->size[0];
-  i0 = band->size[0];
-  band->size[0] = (int)inputData_idx_0;
-  emxEnsureCapacity_real_T(band, i0);
-  nx = inputData->size[0];
-  nx_m_nb = band->size[0];
-  i0 = band->size[0];
-  band->size[0] = nx_m_nb;
-  emxEnsureCapacity_real_T(band, i0);
-  for (i0 = 0; i0 < nx_m_nb; i0++) {
-    band->data[i0] = 0.0;
-  }
-
-  if (inputData->size[0] >= 98) {
-    for (k = 0; k < 49; k++) {
-      nx_m_nb = k + 1;
-      for (j = nx_m_nb; j <= nx; j++) {
-        band->data[j - 1] += dv3[k] * inputData->data[(j - k) - 1];
-      }
-    }
-  } else {
-    if (inputData->size[0] > 49) {
-      nx_m_nb = inputData->size[0] - 50;
-    } else {
-      nx_m_nb = -1;
-    }
-
-    for (k = 0; k <= nx_m_nb; k++) {
-      for (j = 0; j < 49; j++) {
-        i0 = k + j;
-        band->data[i0] += inputData->data[k] * dv3[j];
-      }
-    }
-
-    naxpy = inputData->size[0] - nx_m_nb;
-    i0 = nx_m_nb + 2;
-    for (k = i0; k <= nx; k++) {
-      for (j = 0; j <= naxpy - 2; j++) {
-        nx_m_nb = (k + j) - 1;
-        band->data[nx_m_nb] += inputData->data[k - 1] * dv3[j];
-      }
-
-      naxpy--;
-    }
-  }
-
-  i0 = band->size[0];
-  for (nx_m_nb = 0; nx_m_nb < i0; nx_m_nb++) {
-    if (band->data[nx_m_nb] >= 30.0) {
-      out[6] = 7.0;
+  filter(dv6, inputData, band);
+  for (i = 0; i < 500; i++) {
+    if (band[i] >= 30.0) {
+      /* out(7,1) = 7; */
+      out = 7.0;
     }
   }
 
   /* C2 */
-  inputData_idx_0 = (unsigned int)inputData->size[0];
-  i0 = band->size[0];
-  band->size[0] = (int)inputData_idx_0;
-  emxEnsureCapacity_real_T(band, i0);
-  nx = inputData->size[0];
-  nx_m_nb = band->size[0];
-  i0 = band->size[0];
-  band->size[0] = nx_m_nb;
-  emxEnsureCapacity_real_T(band, i0);
-  for (i0 = 0; i0 < nx_m_nb; i0++) {
-    band->data[i0] = 0.0;
-  }
-
-  if (inputData->size[0] >= 98) {
-    for (k = 0; k < 49; k++) {
-      nx_m_nb = k + 1;
-      for (j = nx_m_nb; j <= nx; j++) {
-        band->data[j - 1] += dv4[k] * inputData->data[(j - k) - 1];
-      }
-    }
-  } else {
-    if (inputData->size[0] > 49) {
-      nx_m_nb = inputData->size[0] - 50;
-    } else {
-      nx_m_nb = -1;
-    }
-
-    for (k = 0; k <= nx_m_nb; k++) {
-      for (j = 0; j < 49; j++) {
-        i0 = k + j;
-        band->data[i0] += inputData->data[k] * dv4[j];
-      }
-    }
-
-    naxpy = inputData->size[0] - nx_m_nb;
-    i0 = nx_m_nb + 2;
-    for (k = i0; k <= nx; k++) {
-      for (j = 0; j <= naxpy - 2; j++) {
-        nx_m_nb = (k + j) - 1;
-        band->data[nx_m_nb] += inputData->data[k - 1] * dv4[j];
-      }
-
-      naxpy--;
+  filter(dv7, inputData, band);
+  for (i = 0; i < 500; i++) {
+    if (band[i] >= 30.0) {
+      /* out(8,1) = 8; */
+      out = 8.0;
     }
   }
 
-  i0 = band->size[0];
-  for (nx_m_nb = 0; nx_m_nb < i0; nx_m_nb++) {
-    if (band->data[nx_m_nb] >= 30.0) {
-      out[7] = 8.0;
-    }
-  }
-
-  emxFree_real_T(&band);
+  return out;
 }
 
 /* End of code generation (XyloStoriesFilter.c) */

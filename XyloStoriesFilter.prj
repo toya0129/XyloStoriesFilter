@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2018b">
-  <configuration build-checksum="2882733397" file="/Users/toya/Project/XyloStories/MatlabSensor/XyloStoriesFilter.prj" location="/Users/toya/Project/XyloStories/MatlabSensor" name="XyloStoriesFilter" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="3047394907" file="/Users/toya/Project/XyloStories/XyloStoriesFilter/XyloStoriesFilter.prj" location="/Users/toya/Project/XyloStories/XyloStoriesFilter" name="XyloStoriesFilter" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex />
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -776,7 +776,7 @@
       </unset>
     </profile>
     <param.objective>option.objective.c</param.objective>
-    <param.WorkflowStep>workflowSummary</param.WorkflowStep>
+    <param.WorkflowStep>generateCode</param.WorkflowStep>
     <param.TestSnippets />
     <param.DefaultImportExportVariable>config</param.DefaultImportExportVariable>
     <param.ExternalFcnMajority>column</param.ExternalFcnMajority>
@@ -796,7 +796,7 @@
     <param.AutoInferUnboundedSizeThreshold>2048</param.AutoInferUnboundedSizeThreshold>
     <param.EnableFixedPointStep>false</param.EnableFixedPointStep>
     <param.EnableScreener>true</param.EnableScreener>
-    <param.AnnotationChecksum>552178857</param.AnnotationChecksum>
+    <param.AnnotationChecksum>1981307777</param.AnnotationChecksum>
     <var.LegacyTarget />
     <var.MirrorOnOpen>false</var.MirrorOnOpen>
     <param.FixedPointEnabled>false</param.FixedPointEnabled>
@@ -805,12 +805,12 @@
     <param.unifiedParamStorage />
     <var.gc.lastOutputRoot>codegen/lib/XyloStoriesFilter</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>2753143636</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>2617567513</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot />
     <var.cfi.preBuildChecksum />
     <var.outdatedOnRestore>false</var.outdatedOnRestore>
-    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/toya/Project/XyloStories/MatlabSensor/XyloStoriesFilter.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;2979072759&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
-    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/toya/Project/XyloStories/MatlabSensor/XyloStoriesFilter.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
+    <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;/Users/toya/Project/XyloStories/XyloStoriesFilter/XyloStoriesFilter.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;2017546010&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
+    <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;/Users/toya/Project/XyloStories/XyloStoriesFilter/XyloStoriesFilter.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>
     <param.NoDefaultJIT>false</param.NoDefaultJIT>
     <param.configImportActive>false</param.configImportActive>
@@ -840,8 +840,8 @@
     <var.isDeepLearningForMatlabCoderEnabled>true</var.isDeepLearningForMatlabCoderEnabled>
     <param.deeplearning.TargetLib>option.deeplearning.targetlibrary.none</param.deeplearning.TargetLib>
     <var.hideTensorRT>false</var.hideTensorRT>
-    <var.hasMatlabDeepLearningSupportPackage>true</var.hasMatlabDeepLearningSupportPackage>
-    <var.hasGpuDeepLearningSupportPackage>true</var.hasGpuDeepLearningSupportPackage>
+    <var.hasMatlabDeepLearningSupportPackage>false</var.hasMatlabDeepLearningSupportPackage>
+    <var.hasGpuDeepLearningSupportPackage>false</var.hasGpuDeepLearningSupportPackage>
     <param.tensorrt.DataType>option.tensorrt.datatype.fp32</param.tensorrt.DataType>
     <param.tensorrt.DataPath />
     <param.tensorrt.NumCalibrationBatches>1</param.tensorrt.NumCalibrationBatches>
@@ -949,8 +949,6 @@
       <var.isDeepLearningForMatlabCoderEnabled />
       <param.deeplearning.TargetLib />
       <var.hideTensorRT />
-      <var.hasMatlabDeepLearningSupportPackage />
-      <var.hasGpuDeepLearningSupportPackage />
       <param.tensorrt.DataType />
       <param.tensorrt.DataPath />
       <param.tensorrt.NumCalibrationBatches />
@@ -1004,7 +1002,7 @@
     </unset>
     <fileset.entrypoints>
       <file custom-data-expanded="false" value="${PROJECT_ROOT}/XyloStoriesFilter.m">
-        <Marker>1551275568161</Marker>
+        <Marker>1551286515660</Marker>
       </file>
     </fileset.entrypoints>
     <fileset.testbench />
@@ -1015,7 +1013,7 @@
           <idpTable>
             <type typeId="0">
               <Class>double</Class>
-              <Size>:inf x 1</Size>
+              <Size>500 x 1</Size>
               <Value />
               <InitialValue />
               <UserDefined>true</UserDefined>
@@ -1027,7 +1025,7 @@
       </file>
     </fileset.inputtypes>
     <build-deliverables>
-      <file location="${PROJECT_ROOT}/codegen/lib/XyloStoriesFilter" name="XyloStoriesFilter.a" optional="false">/Users/toya/Project/XyloStories/MatlabSensor/codegen/lib/XyloStoriesFilter/XyloStoriesFilter.a</file>
+      <file location="${PROJECT_ROOT}/codegen/lib/XyloStoriesFilter" name="XyloStoriesFilter.a" optional="false">/Users/toya/Project/XyloStories/XyloStoriesFilter/codegen/lib/XyloStoriesFilter/XyloStoriesFilter.a</file>
     </build-deliverables>
     <workflow />
     <matlab>

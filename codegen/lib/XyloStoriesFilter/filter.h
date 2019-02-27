@@ -19,9 +19,7 @@
 #include "XyloStoriesFilter_types.h"
 
 /* Function Declarations */
-extern void b_filter(const emxArray_real_T *x, emxArray_real_T *y);
-extern void c_filter(const emxArray_real_T *x, emxArray_real_T *y);
-extern void filter(const emxArray_real_T *x, emxArray_real_T *y);
+extern void filter(const double b[49], const double x[500], double y[500]);
 
 #endif
 
