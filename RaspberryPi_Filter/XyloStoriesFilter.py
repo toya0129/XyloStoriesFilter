@@ -1,14 +1,12 @@
 #import
 from ctypes import *
-# import ctypes.util
-# from numpy.ctypeslib import ndpointer
-# import numpy as np
 import serial
-# import re
+import RPi.GPIO as GPIO
+from time import sleep
 
 # Initialize
-size = 0
 out = ""
+gpioPi = [2,3,4,17,27,22,10,9]
 
 # Serial Initialize
 ser = serial.Serial("/dev/cu.usbmodem14401",9600)
@@ -18,7 +16,22 @@ lib = CDLL("XyloStoriesFilter.so")
 lib.XyloStoriesFilter.argtypes = [c_int,c_char_p]
 lib.XyloStoriesFilter.restype = c_char_p
 
+# GPIO Initialize
+def GPIOSetup():
+    global gpioPi
+    i = 0
+
+    GPIO.setmode(GPIO.BCM)
+    for i in range(8):
+        GPIO.setup(gpioPi[i],GPIO.OUT)
+        GPIO.output(gpioPi[i],GPIO.LOW)
+        sleep(0.001)
+
 def XyloStories():
+    global out
+    global gpioPi
+
+    size = 0
     readData = 0
     checkData = ""
     inputData = ""
@@ -29,14 +42,23 @@ def XyloStories():
                 inputData = inputData + checkData
                 readData += 1
             except:
+                print("Error")
                 checkData = ""
 
     size = len(inputData)
     out = lib.XyloStoriesFilter(size,inputData)
-    print(out)
+    if out is not None:
+        print("Filter OK")
+        print(out)
+
 
 
 if __name__ == '__main__':
     print("program start")
-    while 1:
-        XyloStories()
+    try:
+        GPIOSetup()
+        while 1:
+            XyloStories()
+    except KeyboardInterrupt:
+        GPIO.clearnup()
+        ser.close()
