@@ -15,6 +15,7 @@
 /* Include files */
 #include <stddef.h>
 #include <stdlib.h>
+#include <string.h>
 #include "rtwtypes.h"
 #include "XyloStoriesFilter_types.h"
 

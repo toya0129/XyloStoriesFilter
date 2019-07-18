@@ -10,10 +10,8 @@
  */
 
 /* Include files */
-#include <string.h>
 #include "XyloStoriesFilter.h"
 #include "filter.h"
-#include <stdio.h>
 
 /* Function Definitions */
 void filter(const double b[49], const double x[100], double y[100])
@@ -28,10 +26,6 @@ void filter(const double b[49], const double x[100], double y[100])
       y[j - 1] += b[k] * x[(j - k) - 1];
     }
   }
-
-  // for(int a = 0; a < 100; a++){
-  //    printf("y[%d] = %f \n", a, y[a]);
-  // }
 }
 
 /* End of code generation (filter.c) */
