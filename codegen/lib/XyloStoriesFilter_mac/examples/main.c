@@ -40,20 +40,20 @@
 #include "XyloStoriesFilter_initialize.h"
 
 /* Function Declarations */
-static void argInit_1x500_real_T(double result[500]);
+static void argInit_500x1_real_T(double result[500]);
 static double argInit_real_T(void);
 static void main_XyloStoriesFilter(void);
 
 /* Function Definitions */
-static void argInit_1x500_real_T(double result[500])
+static void argInit_500x1_real_T(double result[500])
 {
-  int idx1;
+  int idx0;
 
   /* Loop over the array to initialize each element. */
-  for (idx1 = 0; idx1 < 500; idx1++) {
+  for (idx0 = 0; idx0 < 500; idx0++) {
     /* Set the value of the array element.
        Change this value to the value that the application requires. */
-    result[idx1] = argInit_real_T();
+    result[idx0] = argInit_real_T();
   }
 }
 
@@ -64,14 +64,14 @@ static double argInit_real_T(void)
 
 static void main_XyloStoriesFilter(void)
 {
-  double dv13[500];
+  double dv8[500];
   double out;
 
   /* Initialize function 'XyloStoriesFilter' input arguments. */
   /* Initialize function input argument 'inputData'. */
   /* Call the entry-point 'XyloStoriesFilter'. */
-  argInit_1x500_real_T(dv13);
-  out = XyloStoriesFilter(dv13);
+  argInit_500x1_real_T(dv8);
+  out = XyloStoriesFilter(dv8);
 }
 
 int main(int argc, const char * const argv[])

@@ -3,7 +3,7 @@
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
  *
- * main.c
+ * main.h
  *
  * Code generation for function 'main'
  *
@@ -33,64 +33,18 @@
 /* otherwise use them as required by your application.                   */
 /*                                                                       */
 /*************************************************************************/
+#ifndef MAIN_H
+#define MAIN_H
+
 /* Include files */
-#include "XyloStoriesFilter.h"
-#include "main.h"
-#include "XyloStoriesFilter_terminate.h"
-#include "XyloStoriesFilter_initialize.h"
+#include <stddef.h>
+#include <stdlib.h>
+#include "rtwtypes.h"
+#include "XyloStoriesFilter_types.h"
 
 /* Function Declarations */
-static void argInit_1x500_real_T(double result[500]);
-static double argInit_real_T(void);
-static void main_XyloStoriesFilter(void);
+extern int main(int argc, const char * const argv[]);
 
-/* Function Definitions */
-static void argInit_1x500_real_T(double result[500])
-{
-  int idx1;
+#endif
 
-  /* Loop over the array to initialize each element. */
-  for (idx1 = 0; idx1 < 500; idx1++) {
-    /* Set the value of the array element.
-       Change this value to the value that the application requires. */
-    result[idx1] = argInit_real_T();
-  }
-}
-
-static double argInit_real_T(void)
-{
-  return 0.0;
-}
-
-static void main_XyloStoriesFilter(void)
-{
-  double dv13[500];
-  double out;
-
-  /* Initialize function 'XyloStoriesFilter' input arguments. */
-  /* Initialize function input argument 'inputData'. */
-  /* Call the entry-point 'XyloStoriesFilter'. */
-  argInit_1x500_real_T(dv13);
-  out = XyloStoriesFilter(dv13);
-}
-
-int main(int argc, const char * const argv[])
-{
-  (void)argc;
-  (void)argv;
-
-  /* Initialize the application.
-     You do not need to do this more than one time. */
-  XyloStoriesFilter_initialize();
-
-  /* Invoke the entry-point functions.
-     You can call entry-point functions multiple times. */
-  main_XyloStoriesFilter();
-
-  /* Terminate the application.
-     You do not need to do this more than one time. */
-  XyloStoriesFilter_terminate();
-  return 0;
-}
-
-/* End of code generation (main.c) */
+/* End of code generation (main.h) */
