@@ -12,7 +12,8 @@
 /* Include files */
 #include "XyloStoriesFilter.h"
 #include "filter.h"
-#include "DataConversion.h"
+#include <string.h>
+#include <stdio.h>
 
 /* Function Definitions */
 // size = length for inputData
@@ -31,7 +32,31 @@ char* XyloStoriesFilter(int dataSize, char* inputData)
     exit(-1);
   }
 
-  DataConversion( dataSize, inputData, data);
+  DataConversion(dataSize,inputData,data);
+  // inputData convert string to double
+  // while (i < dataSize){
+  //   if(inputData[i] == 10){
+  //     data[k] = atof(change);
+  //     memset(change,0,sizeof(change));
+  //     k += 1;
+  //     j = 0;
+  //   }else{
+  //     change[j] = inputData[i];
+  //     //printf("change[%d] = %c\n",j,change[j]);
+  //     j += 1;
+  //   }
+  //   i += 1;
+  // }
+  //
+  // int size = sizeof(data) / sizeof(data[0]);
+  //
+  // i = 0;
+
+  // print Data
+  // while(i < size){
+  //   printf("%f \n",data[i]);
+  //   i += 1;
+  // }
 
   static const double dv0[49] = { 0.0049679352140034232, -0.0013079855171886177,
     -0.0068735340613908617, -0.0028250940455763016, 0.0083663135617343832,

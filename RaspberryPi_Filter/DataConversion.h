@@ -3,5 +3,4 @@
 #include <string.h>
 #include <stdlib.h>
 
-void DataConversion(const int size, char* input, double output[100]);
-
+extern void DataConversion(const int size, char* input, double output[100]);

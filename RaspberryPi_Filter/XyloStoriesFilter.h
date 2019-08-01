@@ -15,10 +15,9 @@
 /* Include files */
 #include <stddef.h>
 #include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
 #include "rtwtypes.h"
 #include "XyloStoriesFilter_types.h"
+#include "DataConversion.h"
 
 /* Function Declarations */
 extern char* XyloStoriesFilter(int dataSize,char* inputData);

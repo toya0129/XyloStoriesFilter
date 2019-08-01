@@ -25,8 +25,8 @@ void DataConversion(const int size, char* input, double output[100]){
   }
 
   // Print Data
-  printSize = sizeof(*output) / sizeof( output[0]);
-  for (int i = 0; i < size; i++){
-    printf("%f \n",output[i]);
-  }
+  // printSize = sizeof(*output) / sizeof( output[0]);
+  // for (int i = 0; i < size; i++){
+  //   printf("%f \n",output[i]);
+  // }
 }

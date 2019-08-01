@@ -1,7 +1,7 @@
 #import
 from ctypes import *
 import serial
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from time import sleep
 
 # Initialize
@@ -14,18 +14,18 @@ ser = serial.Serial("/dev/cu.usbmodem14401",9600)
 # Filter Library Initialize
 lib = CDLL("XyloStoriesFilter.so")
 lib.XyloStoriesFilter.argtypes = [c_int,c_char_p]
-lib.XyloStoriesFilter.restype = c_char_p
+lib.XyloStoriesFilter.restype = c_char
 
 # GPIO Initialize
-def GPIOSetup():
-    global gpioPi
-    i = 0
-
-    GPIO.setmode(GPIO.BCM)
-    for i in range(8):
-        GPIO.setup(gpioPi[i],GPIO.OUT)
-        GPIO.output(gpioPi[i],GPIO.LOW)
-        sleep(0.001)
+# def GPIOSetup():
+#     global gpioPi
+#     i = 0
+#
+#     GPIO.setmode(GPIO.BCM)
+#     for i in range(8):
+#         GPIO.setup(gpioPi[i],GPIO.OUT)
+#         GPIO.output(gpioPi[i],GPIO.LOW)
+#         sleep(0.001)
 
 def XyloStories():
     global out
@@ -56,7 +56,7 @@ def XyloStories():
 if __name__ == '__main__':
     print("program start")
     try:
-        GPIOSetup()
+        # GPIOSetup()
         while 1:
             XyloStories()
     except KeyboardInterrupt:
