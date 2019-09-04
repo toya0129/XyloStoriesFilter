@@ -19,20 +19,20 @@ lib.XyloStoriesFilter.argtypes = [c_int,c_char_p]
 lib.XyloStoriesFilter.restype = c_char_p
 
 # GPIO Initialize
-# def GPIOSetup():
-#     global gpioPi
-#     i = 0
-#
-#     GPIO.setmode(GPIO.BCM)
-#     for i in range(8):
-#         GPIO.setup(gpioPi[i],GPIO.OUT)
-#         GPIO.output(gpioPi[i],GPIO.LOW)
-#         sleep(0.001)
+def GPIOSetup():
+    global gpioPi
+    i = 0
+
+    GPIO.setmode(GPIO.BCM)
+    for i in range(8):
+        GPIO.setup(gpioPi[i],GPIO.OUT)
+        GPIO.output(gpioPi[i],GPIO.LOW)
+        sleep(0.001)
 
 def XyloStories():
     global out
     global gpioPi
-
+    
     size = 0
     readData = 0
     checkData = ""
@@ -44,23 +44,35 @@ def XyloStories():
                 inputData = inputData + checkData
                 readData += 1
             except:
-                print("Error")
+                print('Error')
                 checkData = ""
 
     size = len(inputData)
     out = lib.XyloStoriesFilter(size,inputData)
-    if out is not None:
-        print("Filter OK")
-        print(out)
+    print('out = ' + out)
+    if out:
+        print('Filter OK')
+        SendGPIO(out[0])
+        
+        
+def SendGPIO(sound):
+    sound = int(sound)
+    print('sound = ' +  str(sound))
+    GPIO.output(gpioPi[sound - 1],GPIO.HIGH)
+    sleep(1)
+    GPIO.output(gpioPi[sound - 1],GPIO.LOW )
+    sleep(0.001)
+    
 
 
 
 if __name__ == '__main__':
-    print("program start")
+    print('Program Start')
     try:
-        # GPIOSetup()
+        GPIOSetup()
         while 1:
             XyloStories()
     except KeyboardInterrupt:
+        print('Program Finish')
         GPIO.clearnup()
         ser.close()
