@@ -1,36 +1,22 @@
 #import
 from ctypes import *
 import serial
-#import RPi.GPIO as GPIO
 from time import sleep
 
 # Initialize
+old_out = ""
 out = ""
-gpioPi = [2,3,4,17,27,22,10,9]
 
 # Serial Initialize
-ser = serial.Serial("/dev/cu.usbmodem14401",9600)
+ser = serial.Serial("/dev/cu.usbmodem14401",115200)
 
 # Filter Library Initialize
 lib = CDLL("XyloStoriesFilter.so")
 lib.XyloStoriesFilter.argtypes = [c_int,c_char_p]
-lib.XyloStoriesFilter.restype = c_char
-
-# GPIO Initialize
-# def GPIOSetup():
-#     global gpioPi
-#     i = 0
-#
-#     GPIO.setmode(GPIO.BCM)
-#     for i in range(8):
-#         GPIO.setup(gpioPi[i],GPIO.OUT)
-#         GPIO.output(gpioPi[i],GPIO.LOW)
-#         sleep(0.001)
+lib.XyloStoriesFilter.restype = c_char_p
 
 def XyloStories():
-    global out
-    global gpioPi
-
+    global old_out
     size = 0
     readData = 0
     checkData = ""
@@ -47,18 +33,18 @@ def XyloStories():
 
     size = len(inputData)
     out = lib.XyloStoriesFilter(size,inputData)
-    if out is not None:
+    print('out = {}'.format(out))
+    print('out_old = {}'.format(old_out))
+    if out and out != old_out:
         print("Filter OK")
         print(out)
-
-
+    old_out = out
 
 if __name__ == '__main__':
     print("program start")
     try:
-        # GPIOSetup()
         while 1:
             XyloStories()
     except KeyboardInterrupt:
-        GPIO.clearnup()
+        print('Program Finish')
         ser.close()
