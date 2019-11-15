@@ -51,7 +51,7 @@ def XyloStories():
     if out:
         if out is not old_out or sound_count == 10:
             print("Filter OK")
-            send = out[0]
+            send = out[0] + "\n"
             sound_count = 0
         else:
             send = '\n'
