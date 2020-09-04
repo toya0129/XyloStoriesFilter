@@ -19,8 +19,8 @@ client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 # Filter Library Initialize
 lib = CDLL("XyloStoriesFilter.so")
-lib.XyloStoriesFilter.argtypes = [c_int,c_char_p]
-lib.XyloStoriesFilter.restype = c_char_p
+lib.XyloStoriesFilter.argtypes = [c_int,c_wchar_p]
+lib.XyloStoriesFilter.restype = c_wchar_p
 
 def ServerConnect_local():
     client.connect((HOST,PORT))
@@ -36,6 +36,7 @@ def XyloStories():
     while readData < 100:
         if ser.in_waiting:
             checkData = ser.readline()
+            checkData = str(checkData)
             try:
                 inputData = inputData + checkData
                 readData += 1
@@ -44,7 +45,7 @@ def XyloStories():
                 checkData = ""
 
     size = len(inputData)
-    out = lib.XyloStoriesFilter(size,inputData)
+    out = lib.XyloStoriesFilter(size, inputData)
     print('out = {}'.format(out))
     print('out_old = {}'.format(old_out))
 

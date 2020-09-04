@@ -11,7 +11,7 @@ function out = XyloStoriesFilter(inputData)
     end
     
     %D
-    
+    bandpass = fir1(48,[0.44 0.5]);
     band = filter(bandpass,1,inputData);
     for i = 1:length(band)
         if band(i,1) >= 30
