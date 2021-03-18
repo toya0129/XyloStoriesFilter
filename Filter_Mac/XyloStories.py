@@ -18,7 +18,8 @@ from SocketClient import *
 
 
 # グローバル変数
-serial_root = "/dev/cu.usbmodem14401"
+serial_root = "/dev/cu.usbmodem14301"
+# serial_root = "/dev/cu.usbmodem14401"
 serial_bps = 115200
 
 socket_host = '127.0.0.1'
@@ -48,6 +49,7 @@ class XyloStories():
 
         add_data = [0] * 8
         max_index = 0
+        peak = 0
 
         # シングルスレッド
         for i in range(8):
@@ -61,7 +63,7 @@ class XyloStories():
         # for i in range(8):
         #     th[i].join()
 
-        # Judgment
+        ## 判別開始
         # 足し合わせる
         for i in range(8):
             for data in results[i]:
@@ -70,13 +72,21 @@ class XyloStories():
         for i in range(1,8):
             if add_data[max_index] < add_data[i]:
                 max_index = i
+        # ピーク点を確認
+        for data in results[max_index]:
+            if data > peak:
+                peak = data
+
+        ## 最終判別
         # 無音時ではない
-        if add_data[max_index] > 0.4:
-            for data in results[max_index]:
-                if data > 0.07:
-                    print('oto = {}'.format(label[max_index]))
-                    socket.SendData(max_index + 1)
-                    break
+        if add_data[max_index] > 0.1:
+            # print(max_index)
+            # print(peak)
+            if peak > 0.03:
+                print('oto = {}'.format(label[max_index]))
+                socket.SendData(max_index + 1)
+            else:
+                socket.SendData("none")
         else:
             socket.SendData("none")
 
